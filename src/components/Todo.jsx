@@ -1,5 +1,7 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import { ListMain } from "./TodoList";
+
 export const Todo = () => {
   const [list, setList] = useState([]);
 
@@ -18,15 +20,6 @@ export const Todo = () => {
     setTodo("");
   };
 
-  let handleStatus = (idd) => {
-    let updatedTodo = list.map((item) => {
-      if (item.id === idd) {
-        item.status = !item.status;
-      }
-      return item;
-    });
-    setList(updatedTodo);
-  };
   return (
     <div>
       <div>
@@ -36,79 +29,8 @@ export const Todo = () => {
           <span>➕</span>{" "}
         </button>
       </div>
-
-      {/* <div>
-        {list.map((e) => (
-          <div key={e.id}>
-            <p>{e.todo}</p>
-            <button
-              onClick={() => {
-                let updatedTodo = list.map((item) => {
-                  if (item.id === e.id) {
-                    item.status = !item.status;
-                  }
-                  return item;
-                });
-                setList(updatedTodo);
-              }}
-            >
-              {e.status === true ? "completed" : "not-completed"}
-            </button>
-          </div>
-        ))}
-      </div> */}
-
-      {/* not competed */}
-      <div>
-        <h2>Not Completed</h2>
-        {list
-          .filter((item) => item.status === false)
-          .map((person) => (
-            <div>
-              {person.todo}
-              {"   "}
-              <button
-                onClick={() => {
-                  let updatedTodo = list.map((item) => {
-                    if (item.id === person.id) {
-                      item.status = !item.status;
-                    }
-                    return item;
-                  });
-                  setList(updatedTodo);
-                }}
-              >
-                {person.status === true ? "completed" : "not-completed"}
-              </button>
-            </div>
-          ))}
-      </div>
-
-      {/* complted */}
-
-      <div>
-        <h2>Completed</h2>
-        {list
-          .filter((item) => item.status === true)
-          .map((person) => (
-            <div>
-              <del>{person.todo}</del> {"   "}
-              <button
-                onClick={() => {
-                  let updatedTodo = list.map((item) => {
-                    if (item.id === person.id) {
-                      item.status = !item.status;
-                    }
-                    return item;
-                  });
-                  setList(updatedTodo);
-                }}
-              >
-                {person.status === true ? "completed" : "not-completed"}
-              </button>
-            </div>
-          ))}
-      </div>
+      <ListMain list={list} setList={setList} condition={false}></ListMain>
+      <ListMain list={list} setList={setList} condition={true}></ListMain>
     </div>
   );
 };
