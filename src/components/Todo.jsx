@@ -6,6 +6,7 @@ export const Todo = () => {
   const [list, setList] = useState([]);
 
   const [todo, setTodo] = useState("");
+  const [open, setOpen] = useState(false);
   let handleTodo = (e) => {
     setTodo(e.target.value);
   };
@@ -30,7 +31,21 @@ export const Todo = () => {
         </button>
       </div>
       <ListMain list={list} setList={setList} condition={false}></ListMain>
-      <ListMain list={list} setList={setList} condition={true}></ListMain>
+
+      <br />
+      <br />
+      <button
+        onClick={() => {
+          setOpen(!open);
+        }}
+      >
+        show Completed
+      </button>
+      {open === true ? (
+        <ListMain list={list} setList={setList} condition={true}></ListMain>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

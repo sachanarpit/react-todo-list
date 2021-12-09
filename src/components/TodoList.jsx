@@ -8,7 +8,6 @@ export const ListMain = ({ list, setList, condition }) => {
         .map((person) => (
           <div>
             {condition === true ? <del>{person.todo}</del> : <>{person.todo}</>}
-
             {"   "}
             <button
               onClick={() => {
